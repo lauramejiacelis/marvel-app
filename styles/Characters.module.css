@@ -1,0 +1,43 @@
+.infoContainer{
+  display: flex;
+}
+
+.infoContainer div{
+  background-color: #0E0F0F;
+  border: 1px solid #42331A;
+  border-radius: 5px;
+}
+
+.progress{
+  flex-grow: 2;
+}
+
+.video{
+  flex-grow: 1.5;
+}
+
+.image{
+  flex-grow: 1.5;
+}
+
+.cardsContainer{
+  border: 1px solid lightgoldenrodyellow;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.card{
+  border: 1px solid #5B5A56;
+  border-radius: 5px;
+  width: 248px;
+  height: 448px;
+}
+
+.characterInfo{
+  background-color: #5B5A56;
+  border: 1px solid #F0E6D2;
+  border-radius: 5px;
+  width: 178px;
+  height: 49px;
+}
