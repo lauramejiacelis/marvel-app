@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
-
+import Card from '@components/components/Card'
 import styles from '../styles/Characters.module.css'
+import YoutubeEmbed from '@components/components/YoutubeEmbed'
+import Pagination from '@components/components/Pagination'
+import { useState } from 'react'
+import { paginate } from '@components/helpers/paginate'
 
 export const getStaticProps = async () => {
   const res= await fetch('http://gateway.marvel.com/v1/public/characters?ts=1&apikey=5c0ac94ae46c3f7242300871fa61952c&hash=6bc9123d784f5c98b1a2790c76e0e013')
@@ -13,7 +17,18 @@ export const getStaticProps = async () => {
 }
 
 const Characters = ({characters}) =>{
-  console.log(characters);
+  console.log(characters.length);
+
+  const charactersPerPage= 5;
+
+  const [currentPage, setCurrentPage]=useState(1)
+
+  const onPageChange = (page) =>{
+    setCurrentPage(page)
+  }
+
+  const paginatedCharacters= paginate(characters, currentPage, charactersPerPage)
+
   return(
     <>
     <Head>
@@ -25,34 +40,30 @@ const Characters = ({characters}) =>{
       <main>
         <div className={styles.infoContainer}>
           <div className={styles.progress}>PROGRESO DE PELICULAS PRODUCIDAS</div>
-          <div className={styles.video}>VIDEO</div>
-          <div className={styles.image}>
+          <div>
+            <YoutubeEmbed embedId='VgBKUofIdVo'/>
+          </div>
+          <div>
             <Image
               src="https://wallpapershome.com/images/pages/pic_h/17945.jpg"
+              alt="avengers poster"
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: '382px', height: 'auto' }}
-              alt="avengers poster"
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
         </div>
         <div className={styles.cardsContainer}>
-          PERSONAJES
-            
-          <div className={styles.card}>
-            <h3>PERSONAJE</h3>
-            {characters.map((character)=>(
-              <h3>{character.name}</h3>
-            ))}
-            
 
-            <div className={styles.characterInfo}>Comics:</div>
-            <div className={styles.characterInfo}>Peliculas:</div>
-          </div>
+          {paginatedCharacters.map((character)=>(
+            <Card key={character.name} name={character.name} image={character.thumbnail.path.concat('.',character.thumbnail.extension)} comics={character.comics.available} movies={character.series.available} />
+          ))}
+
         </div>
-        
-        
+
+        <Pagination items={characters.length} currentPage={currentPage} pageSize={charactersPerPage} onPageChange={onPageChange}/>
+
       </main>
 
     </>

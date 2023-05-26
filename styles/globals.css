@@ -1,13 +1,24 @@
+@font-face {
+  font-family: 'BeaufortforLOL';
+  src: url('../asset/beaufortForLol/BeaufortforLOL-Regular.ttf');
+  src: url('../asset/beaufortForLol/BeaufortforLOL-Bold.ttf');
+  font-weight: 400;
+  font-style: normal;
+  }
+
 :root {
-  background-color:#000000;
+  background-color:#9b9696;
+  background-image: radial-gradient(82.53% 82.53% at 50% 91.99%, #19488F 44.09%, #000000 100%), url('../public/dcorp_a_futuristic_city_background_63c74b44-ea42-4d2f-b54e-7fb1fab729dd\ 1.png');
+  mix-blend-mode: multiply;
   color: #F0E6D2;
+  background-repeat: no-repeat;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family: 'BeaufortforLOL'
 }
 
 html,
@@ -51,6 +62,20 @@ footer {
   color: #777;
   font-size: smaller;
   border-top: 1px solid #3C3C41;
+}
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #C89B3C;
+}
+
+.pagination button{
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 
